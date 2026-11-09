@@ -15,9 +15,17 @@ The frontmatter describes metadata such as the skill name, description, compatib
 
 ## Available skills
 
+### Project setup
+
 | Skill | Path | Description |
 | --- | --- | --- |
 | Generate AGENTS.md | [`skills/generate-agents-md/SKILL.md`](skills/generate-agents-md/SKILL.md) | Creates or improves a project-specific `AGENTS.md` file for AI coding agents. |
+
+### Automatization/Workflows
+
+| Skill | Path | Description |
+| --- | --- | --- |
+| Backlog monitor | [`skills/backlog-monitor/SKILL.md`](skills/backlog-monitor/SKILL.md) | Monitors project backlog changes, implements features and bug fixes, and tracks PRs and delivery across GitHub, GitLab, Azure DevOps, Linear, and other providers. |
 | uier monitor | [`skills/uier-monitor/SKILL.md`](skills/uier-monitor/SKILL.md) | Triages website feedback, coordinates fixes and PRs, tracks deployment, and reports back in uier. [Installation and usage](skills/uier-monitor/README.md). |
 | uier monitor script | [`skills/uier-monitor-script/SKILL.md`](skills/uier-monitor-script/SKILL.md) | Optional helper recovery for uier monitor installations that omit script files. |
 
@@ -45,6 +53,20 @@ Other installation options and agent-specific documentation:
 - [Claude skills](https://support.claude.com/en/articles/12512180-use-skills-in-claude).
 
 Use the `SKILL.md` file in each skill directory as the source of truth for what the skill does and how an agent should invoke it.
+
+### Install backlog monitor in another project
+
+From the target project's checkout:
+
+```sh
+npx skills@latest add enterwell/agent-skills --skill backlog-monitor
+```
+
+Then ask your agent to use `backlog-monitor` with the backlog project URL or name.
+The skill discovers the connected backlog and code-host tools separately; they can be
+different providers, such as Linear issues with GitLab merge requests. Continuous
+monitoring requires a host that can wake the agent for events or scheduled checks.
+Installation does not start monitoring.
 
 ### Install uier monitor in another project
 
